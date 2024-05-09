@@ -1,0 +1,46 @@
+{
+  "user": [
+    {
+      "id": "adminuser",
+      "name": "Nihira",
+      "password": "admin",
+      "email": "nihiratechiees@gmail.com"
+    },
+    {
+      "id": "ntuser",
+      "name": "Fullname",
+      "password": "ntuser",
+      "email": "email@email.com"
+    },
+    {
+      "id": "erer",
+      "name": "erewr",
+      "password": "edtwet",
+      "email": "zfsfw@hotmail.com"
+    },
+    {
+      "id": "tgete",
+      "name": "eregh",
+      "password": "5e4t45t",
+      "email": "erefhwjech@hotmail.com"
+    },
+    {
+      "id": "naber",
+      "name": "erennn",
+      "password": "eren",
+      "email": "yusjdfjdsjj@hotmail.com"
+    },
+    {
+      "id": "eerewjr",
+      "name": "ertwer",
+      "password": "wefrewfer",
+      "email": "egefge@hotmail.com"
+    },
+    {
+      "id": "eren",
+      "name": "eren",
+      "password": "eren",
+      "email": "erenzirek@gmail.com"
+    }
+  ]
+}

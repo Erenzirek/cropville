@@ -1,0 +1,8 @@
+body{
+    background-image: url("./images/title_background.jpg");  
+   /* background-color: rgb(116, 183, 17); */
+   background-repeat: no-repeat;
+   background-size: cover;
+   /* backdrop-filter: blur(10px);  */
+  
+  }

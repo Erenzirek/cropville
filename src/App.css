@@ -1,38 +1,801 @@
-.App {
+
+.background-game{  
+ width: 100%;
+ height: 100%;
+ background-color: blue;
+}
+
+.board {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ margin: 100px auto;
+}
+.toggle-button{
+ position: fixed;
+ top: 160px;
+ right: 20px;
+ width:  75px;
+ height: 75px;
+ border-radius: 50%;
+ border: 3px solid black;
+ /* background-image: url('images/tools-icon.jpg'); */
+ background-repeat: contain;
+ background-size: cover; 
+ 
+}
+
+.tools-header{
+ width: 200px;
+ height: 70px;
+ background-color: black;
+ color: white;
+ text-align: center;
+ display: flex;
+ align-items: center;
+ flex-direction: row;
+ justify-content: center;
+ font-size: 40px;
+ font-style: italic;
+}
+.tool-container {
+ display: flex;
+ flex-direction: column;
+ background-color: black;
+ border-radius: 18px;
+ border-end-start-radius: 0px;
+ border-end-end-radius: 0px;
+ width: 200px;
+ height: 0;
+ position: fixed;
+ top: 130px;
+ right: 0;
+ overflow: hidden;
+ visibility: hidden;
+}
+
+@keyframes slideIn {
+ from {
+   height: 0;
+   visibility: hidden;
+ }
+ to {
+   height: 540px;
+   visibility: visible;
+ }
+}
+
+@keyframes slideOut {
+ from {
+   height: 400px;
+   visibility: visible;
+ }
+ to {
+   height: 0;
+   visibility: hidden;
+ }
+}
+
+.tool-container.open {
+ animation: slideIn 0.3s ease forwards; /* Açılış animasyonu */
+}
+
+.tool-container.close {
+ animation: slideOut 0.3s ease forwards; /* Kapanış animasyonu */
+}
+
+.toolButton{
+ background-color: burlywood;
+ border: 3px solid black;
+ font-size: 20px;
+ color: black;
+ font-weight: bold;
+}
+.money-block {
+ display: flex;
+ flex-direction: column;
+ align-items: center; /* İçerikleri dikeyde merkezler */
+ width: 130px; /* Genişlik artırıldı */
+ height: 70px; /* Yükseklik artırıldı */
+ background-image: url(components/images/wood_background.jpg);
+ background-repeat: no-repeat;
+ background-size: cover;
+ position: absolute;
+ top: 10px;
+ left: 10px;
+ color: white;
+ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ font-size: 14px; /* Yazı boyutu artırıldı */
+ font-weight: bold;
+ border-radius: 20px; /* Köşeler daha yuvarlatıldı */
+ border: 3px solid rgba(255, 239, 209, 0.63);
+ box-shadow: rgba(0, 0, 0, 0.25) 0px 12px 16px, rgba(0, 0, 0, 0.12) 0px -6px 6px, rgba(0, 0, 0, 0.12) 0px 2px 4px, rgba(0, 0, 0, 0.17) 0px 6px 6px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.money-block > div {
+ margin-bottom: 9px; /* Alt boşluk azaltıldı */
+}
+
+.money-block span {
+ margin-right: 3px;
+ top: 7px;
+ position: relative;
+ left: 6px;
+}
+
+.money-block-display {
+ width: 50px; /* Genişlik artırıldı */
+ height: 30px; /* Yükseklik azaltıldı */
+ background-color: rgb(230, 191, 135);
+ border-radius: 15px; /* Köşeler daha yuvarlatıldı */
+ padding: 2px;
+}
+
+/* BoardPage.css */
+.Menu-Button-Container{
+ display: flex;
+ flex-direction: row;
+ position: fixed;
+ bottom: 0px;
+ width: 250px;
+ height: 80px;
+ background-image: url(components/images/wood_background.jpg);
+ background-repeat: no-repeat;
+ background-size: cover;
+ box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+ border: 2px solid rgb(22,32,50);
+ margin: 10px auto;
+ right: 585px;
+ border-radius: 20px;
+}
+
+.price-info{
+ text-align: center;
+ font-size: 10px;
+ font-weight: bold;
+ font-style: italic;
+ display: none;
+}
+
+.apple-button, .orange-button, .grape-button, .carrot-button{
+ width: 55px;
+ height: 55px;  
+ padding: 3px 2px;
+ font-size: 25px;
+ background-color: rgb(230, 191, 135);
+ position: relative;
+ top: 12px;
+ margin: 3px;
+ border-radius: 50%;
+ border: 3px solid black;
+ transition: background-color 0.3s ease, border 0.3s ease, transform 0.3s ease;
+}
+
+.apple-button:hover{
+ background-color: #ff3636;
+ border: 3px solid white;
+ transform: scale(1.2);
+}
+
+.orange-button:hover{
+ background-color: orange;
+ border: 3px solid white;
+ transform: scale(1.2);
+}
+
+.grape-button:hover{
+ background-color: purple;
+ border: 3px solid white;
+ transform: scale(1.2);
+}
+
+.carrot-button:hover{
+ background-color: orangered;
+ border: 3px solid white;
+ transform: scale(1.2);
+}
+
+
+.top-level-bar{
+ margin: 2px auto;
+ justify-content: center;
+ display: flex;
+ background: rgba(226, 255, 135, 50%);
+ color: white;
+ border-radius: 8px;
+ font-weight: bold;
+ width: 150px;
+ height: 50px;
+ position: fixed;
+ top: 0px;
+ right: 607px;
+}
+
+.star-symbol{
+ position: absolute;
+ top: 1px;
+ right: 132px;
+ font-size: 25px;
+}
+
+.level-bar-container{
+ background-color: rgb(88, 81, 60);
+ border: 2px solid white;
+ border-radius: 5px;
+ position: fixed;
+ width: 120px;
+ height: 15px;
+ top: 25px;
+ right: 620px;
+}
+
+.bar-f{
+ width: 10%;
+ height: 15px;
+ background-color: orange;
+}
+
+.Harvest-Table-Title{
+ text-align: center;
+ font-size: 10px;
+ font-style: oblique;
+}
+
+.time-table-button-container {
+ width: 70px;
+ height: 70px;
+ position: fixed;
+ top: 200px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ right: 20px;
+ bottom: 20px;
+ z-index: 999;
+ background-image: url(components/images/wood_background.jpg);
+ background-repeat: no-repeat;
+ background-size: cover;
+}
+
+.progress-bar {
+  transition: height 0.5s ease; /* Yükseklikteki geçiş efekti */
+  direction: rtl; /* Yönü sağdan sola çevir */
+  height: 100%; /* Yüksekliği yüzde 100'den başlat */
+  background-color: white;
+}
+
+.loading-container {
+  width: 20%;
+  background-color: #12f84c;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid black;
+}
+
+.time-table-button {
+ width: 50px;
+ height: 50px;
+ font-size: 24px;
+ border: none;
+ border-radius: 50%;
+ background-color: #E4B97E;
+ border: 2px solid black;
+ box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+ color: white;
+ cursor: pointer;
+ transition: all 0.5s ease; /* Geçiş efektini ayarla */
+}
+
+.time-table-button:hover{
+ scale: 120%;
+}
+
+.Time-Table {
+ position: fixed;
+ top: 50%; /* Ekranın ortasına hizala */
+ right: -400px; /* Başlangıçta tabloyu ekranın dışına çıkar */
+ transform: translateY(-50%);
+ background-image: url(components/images/wood_background.jpg);
+ background-repeat: no-repeat;
+ background-size: cover;
+ border-radius: 8px;
+ padding: 20px;
+ transition: all 0.5s ease; /* Geçiş efektini ayarla */
+ box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+ border: 2px solid rgb(22, 32, 50);
+ width: 200px;
+ height: 270px;
+ transition: all 0.5s ease; 
+}
+
+.Time-Table.active {
+ right: 100px; /* Tabloyu ekranın sağ köşesine getir */
+ top: 230px;
+}
+
+.table-close-button {
+ position: absolute;
+ top: 2px;
+ right: 4px;
+ background-color: red;
+ color: #fff;
+ border: none;
+ border-radius: 50%;
+ width: 25px;
+ height: 25px;
+ border: 2px solid black;
+ font-size: 10px;
+ cursor: pointer;
+}
+
+.table-close-button:hover {
+ background-color: #f74d4d;
+}
+
+#title-time-table {
+ text-align: center;
+ padding: 10px 0;
+ width: 100px;
+}
+
+.table-container {
+ width: 200px;
+ height: 5px;
+ margin: 1px auto;
+ display: flex;
+}
+
+.table-close-button {
+ display: block;
+ margin-bottom: 10px;
+}
+
+.header, .data {
+ padding: 5px;
+ border: 2px solid black;
+ color: black;
+ font-style: oblique;
+ text-align: center;
+ background-color: rgba(255, 255, 255, 0.596);
+ box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+ position: relative;
+ display: flex;
+ flex-direction: row;
+ justify-content: space-around;
+}
+
+.header {
+ background-color: #E4B97E;
+}
+
+.harvest-block {
+ width: 95%;
+ height: 100%; /* Block'un tamamı kaplaması için */
+ position: relative; /* Pozisyon */
+}
+
+.harvest-loading-block {
+ width: 100%;
+ height: 0%; /* Başlangıçta yükseklik sıfır */
+ position: absolute; /* Pozisyon */
+ bottom: 0; /* Alt kenardan başla */
+ transition: height 5s linear, background-color 5s linear; /* Yükseklik değişimi ve renk değişimi için animasyon */
+}
+
+.loading-block {
+ /* Diğer stil özellikleri */
+ animation-duration: 8s; /* Toplam animasyon süresi */
+ animation-timing-function: linear; /* Animasyonun zamanlama fonksiyonu */
+ animation-iteration-count: 1; /* Tekrar sayısı, isteğe bağlı */
+}
+
+.symbol-container {
+ display: none; /* Başlangıçta sembolü gizle */
+}
+
+.symbol-container.active {
+ display: flex; /* Sadece seçilen hücrede sembolü göster */
+ justify-content: center;
+ align-items: center;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 100px;
+ height: 100px;
+}
+
+.symbol-container.active::after {
+ content: '🌾'; /* Sembol */
+ font-size: 40px;
+}
+
+.Harvest-Button-Container{
+ width: 70px;
+ height: 70px;
+ background-image: url(components/images/wood_background.jpg);
+ background-repeat: no-repeat;
+ background-size: cover;
+ position: fixed;
+ left: 20px;
+ top: 200px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+
+}
+
+.Harvest-Button{
+ width: 50px;
+ height: 50px;
+ font-size: 24px;
+ border: none;
+ border-radius: 50%;
+ background-color: #E4B97E;
+ color: white;
+ cursor: pointer;
+ box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+ border: 2px solid black;
+}
+
+.Harvest-Button:hover{
+ background-color: #f2f2f2;
+ scale: 120%;
+ border: 2px solid greenyellow;
+}
+
+.Harvest-Label{
+ text-align: center;
+ font-size: 20px;
+ font-weight: bold;
+ font-style: italic;
+ position: fixed;
+ right: 3px;
+ top: 185px;
+}
+
+.board-container {
+ display: none;
+ width: 800px;
+ position: relative;
+ transform: rotateY(358deg) rotateX(302deg) rotateZ(44deg);
+ transform-style: preserve-3d;
+ display: flex;
+ justify-content: center; /* Kutuları yatayda ortalamak için */
+ align-items: center; /* Kutuları dikeyde ortalamak için */
+ height: 85vh;
+ left: 210px;
+ top: 50px;
+}
+
+.row {
+ display: flex;
+ flex-direction: column;
+}
+
+.cell {
+   width: 80px; /* Kutu boyutunu ayarla */
+   height: 80px; /* Kutu boyutunu ayarla */
+   background-color: #8B4513; /* Kahverengi */
+   box-sizing: border-box;
+   border: 1px solid green;
+   box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+   color: white;
+   font-weight: bold;
+ }
+
+.cell:hover {
+ border-radius: 2px solid red;
+ transition: all 0.3s ease; /* Geçiş efekti */
+ background-color: red;
+ width: 80px;
+ height: 80px;
+ color: red;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  background-image: url('components/images/wood_background.jpg');
+  background-size: cover;
+  background-position: center; /* Arka plan resmini dikey ve yatayda merkezle */
+  background-repeat: no-repeat;
+  border-radius: 5px;
+  padding: 10px;
+  display: block;
+  top: 50px;
+  position: fixed;
+  margin: 100px auto;
+  right: 500px;
+}
+
+.login {
+  border-radius: 5px;
+  padding: 20px;
+ 
+}
+
+.title-login {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.card-body {
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.form-group {
+  margin-bottom: 15px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.form-group label {
+  font-weight: bold;
+}
+
+.text-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card-footer {
+  text-align: center;
+}
+
+.login-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.new-user-link {
+  color: #007bff;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.register-container {
+  width: 500px;
+  padding: 20px;
+  border-radius: 5px;
+  background-image: url('components/images/wood_background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title-register {
+  text-align: center;
+}
+
+.card-body {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.register-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.register-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.close-button {
+  color: #007bff;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.board-array{
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-between;
+}
+
+.box {
+ width: calc(33.33% - 10px);
+ padding: 20px;
+ background-color: #f0f0f0;
+ border: 1px solid #ccc;
+ text-align: center;
+ margin-bottom: 10px;
+}
+
+.home-game-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+  font-size: 20px;
+}
+
+.title-container {
+  width: 400px;
+  height: 70px;
+  background-color:#00ff40;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  border-radius: 18px;
+}
+
+.My-Farm {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.level-container{
+  text-decoration: none;
+}
+
+.level-array {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.levels {
+  margin: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.level {
+  text-decoration: none;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 5px;
+  background-color: #00ff40; /* Arkaplan rengi yeşil */
+  width: 150px;
+  text-align: center;
+  color: white; /* Yazı rengi beyaz */
+  font-size: 24px; /* Yazı boyutu 24px */
+  text-decoration: none; /* Alt çizgiyi kaldır */
+  display: flex; /* Flexbox düzeni */
+  justify-content: center; /* Yatay hizalama */
+  align-items: center; /* Dikey hizalama */
+}
+
+.start-play {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff3300;
   color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none; /* Alt çizgiyi kaldır */
 }
 
-.App-link {
-  color: #61dafb;
+.start-play:hover {
+  background-color: #00ff40;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Exit-Game-Container{
+    width: 70px;
+    height: 70px;
+    position: fixed;
+    top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 20px;
+    bottom: 20px;
+    z-index: 999;
+    background-image: url('components/images/wood_background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.Exit-Game{
+  position: fixed;
+  right: 20px;
+  top: 30px;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  background-color: #E4B97E;
+  border: 2px solid black;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  color: white;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.Exit-Game a {
+  color: black; /* Değiştirmek istediğiniz renk kodunu buraya ekleyin */
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 20px;
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Exit-Game:hover{
+  background-color: #f2f2f2;
+  scale: 120%;
+  border: 2px solid greenyellow;
+ }
+
+ 
+.User{
+  width: 70px;
+  height: 70px;
+  position: fixed;
+  top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 120px;
+  bottom: 20px;
+  z-index: 999;
+  background-image: url('components/images/wood_background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.User a{
+  color: black; /* Değiştirmek istediğiniz renk kodunu buraya ekleyin */
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 40px;
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.User-Icon{
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  background-color: #E4B97E;
+  border: 2px solid black;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  color: white;
+  cursor: pointer;
+  transition: all 0.5s ease;
 }
